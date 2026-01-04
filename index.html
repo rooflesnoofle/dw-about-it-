@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>epstein.fit</title>
+    <link rel="stylesheet" href="css/main.css">
+    <meta name="description" content="blog ^-^">
+    <meta name="author" content="otis">
+    <meta name="image" content="/music/covers/census.jpg">
+    <meta name="darkreader-lock">
+    <link rel="icon" href="favicon.png">
+    <style id="flickering-style">
+        @keyframes flickering {
+            0% { opacity: 0.63 }; 1% { opacity: 0.46 }; 2% { opacity: 0.95 }; 3% { opacity: 0.37 }; 4% { opacity: 0.78 }; 5% { opacity: 0.41 }; 6% { opacity: 1.14 }; 7% { opacity: 0.9 }; 8% { opacity: 0.43 }; 9% { opacity: 1.17 }; 10% { opacity: 0.48 }; 11% { opacity: 0.94 }; 12% { opacity: 0.91 }; 13% { opacity: 0.92 }; 14% { opacity: 0.86 }; 15% { opacity: 0.73 }; 16% { opacity: 0.76 }; 17% { opacity: 1.04 }; 18% { opacity: 0.42 }; 19% { opacity: 0.99 }; 20% { opacity: 0.53 }; 21% { opacity: 0.76 }; 22% { opacity: 1.12 }; 23% { opacity: 1.22 }; 24% { opacity: 0.79 }; 25% { opacity: 0.36 }; 26% { opacity: 0.8 }; 27% { opacity: 0.57 }; 28% { opacity: 1.28 }; 29% { opacity: 1.05 }; 30% { opacity: 0.38 }; 31% { opacity: 0.85 }; 32% { opacity: 1.23 }; 33% { opacity: 1.07 }; 34% { opacity: 0.41 }; 35% { opacity: 0.64 }; 36% { opacity: 0.4 }; 37% { opacity: 0.63 }; 38% { opacity: 0.97 }; 39% { opacity: 1.03 }; 40% { opacity: 0.84 }; 41% { opacity: 1.34 }; 42% { opacity: 0.78 }; 43% { opacity: 0.69 }; 44% { opacity: 1.17 }; 45% { opacity: 0.64 }; 46% { opacity: 1.04 }; 47% { opacity: 1.02 }; 48% { opacity: 0.65 }; 49% { opacity: undefined }; 50% { opacity: 1 };
+        }
+
+        @keyframes title-pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+                color: #8a8a8a;
+                text-shadow: 2px 2px 0px #333, 0 0 10px #666;
+            }
+            25% {
+                color: #ff6b6b;
+                text-shadow: 2px 2px 0px #333, 0 0 20px #ff6b6b;
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.05);
+                color: #4ecdc4;
+                text-shadow: 2px 2px 0px #333, 0 0 30px #4ecdc4;
+            }
+            75% {
+                color: #45b7d1;
+                text-shadow: 2px 2px 0px #333, 0 0 20px #45b7d1;
+            }
+        }
+
+        @keyframes text-flash {
+            0%, 40% { opacity: 1; color: #999; }
+            50%, 90% { opacity: 0.7; color: #ff6b6b; text-shadow: 0 0 10px #ff6b6b; }
+            100% { opacity: 1; color: #999; }
+        }
+
+        @keyframes menu-glow {
+            0%, 100% {
+                box-shadow: 0 0 5px #333;
+                border-color: #555;
+            }
+            50% {
+                box-shadow: 0 0 25px #4ecdc4, inset 0 0 10px #333;
+                border-color: #4ecdc4;
+            }
+        }
+
+        @keyframes rainbow-border {
+            0% { border-color: #ff6b6b; box-shadow: 0 0 15px #ff6b6b; }
+            25% { border-color: #4ecdc4; box-shadow: 0 0 15px #4ecdc4; }
+            50% { border-color: #45b7d1; box-shadow: 0 0 15px #45b7d1; }
+            75% { border-color: #96ceb4; box-shadow: 0 0 15px #96ceb4; }
+            100% { border-color: #ff6b6b; box-shadow: 0 0 15px #ff6b6b; }
+        }
+
+        @keyframes scanlines {
+            0%, 100% { background-position: 0 0; }
+            50% { background-position: 0 20px; }
+        }
+
+        @keyframes loading-dots {
+            0%, 20% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .retro-title {
+            animation: title-pulse 4s ease-in-out infinite;
+        }
+
+        .flash-text {
+            animation: text-flash 2s ease-in-out infinite;
+        }
+
+        .menu-container {
+            animation: menu-glow 3s ease-in-out infinite;
+        }
+
+        .rainbow-box {
+            animation: rainbow-border 3s linear infinite;
+        }
+
+        .scanline-bg {
+            background: linear-gradient(
+                transparent 50%,
+                rgba(76, 205, 196, 0.1) 50%,
+                rgba(76, 205, 196, 0.1) 51%,
+                transparent 51%
+            );
+            background-size: 100% 4px;
+            animation: scanlines 2s linear infinite;
+        }
+
+        .loading-dot {
+            animation: loading-dots 1.5s infinite;
+        }
+
+        .loading-dot:nth-child(2) { animation-delay: 0.3s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes subtle-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); }
+            50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 5px rgba(255, 255, 255, 0.1); }
+        }
+
+        @keyframes typing-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-1px); }
+            75% { transform: translateX(1px); }
+        }
+
+        .float-box {
+            animation: subtle-float 4s ease-in-out infinite;
+        }
+
+        .pulse-text {
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+
+        .glow-box {
+            animation: subtle-glow 3s ease-in-out infinite;
+        }
+
+        .typing-effect::after {
+            content: '_';
+            animation: typing-cursor 1s infinite;
+        }
+
+        .hover-shake:hover {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            border: 1px solid #444;
+            padding: 5px 0;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            animation: marquee-scroll 15s linear infinite;
+            color: #777;
+            font-family: 'Pixel NES', monospace;
+            font-size: 0.8em;
+        }
+
+        #rain-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        #volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #7dd3c0;
+            border-radius: 2px;
+            cursor: pointer;
+            border: 1px solid #555;
+        }
+
+        #volume-slider::-webkit-slider-thumb:hover {
+            background: #8db69c;
+            border-color: #7dd3c0;
+        }
+
+        #volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: #7dd3c0;
+            border-radius: 2px;
+            cursor: pointer;
+            border: 1px solid #555;
+        }
+
+        #volume-slider::-moz-range-thumb:hover {
+            background: #8db69c;
+            border-color: #7dd3c0;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/bg.gif" id="bg">
+
+    <div id="container">
+        <div id="logo" style="text-align: center; padding: 20px;">
+            <h1 class="pulse-text typing-effect" style="color: #8a8a8a; font-size: 2.2em; margin: 0; font-family: 'Pixel NES', 'NEC_APC3', monospace; letter-spacing: 3px; font-weight: normal;">epstein.fit</h1>
+        </div>
+        <div style="display: grid; grid-template-columns: 250px 1fr; gap: 20px; align-items: start;">
+            <div>
+                <div class="box float-box glow-box" style="margin-bottom: 10px;">
+                    <h4 style="color: #666; margin: 0 0 10px 0;">currently listening:</h4>
+                    <a href="#" id="songlink" target="_blank" style="text-decoration: none; color: #777;">
+                        <div id="musicbox" style="border-left: 2px solid #555; padding-left: 10px;">
+                            <div class="pulse-text" style="color: #777; font-size: 0.9em; margin-bottom: 3px;">drake</div>
+                            <div class="pulse-text" style="color: #777; font-size: 0.9em; margin-bottom: 3px;">quinn</div>
+                            <div class="pulse-text" style="color: #777; font-size: 0.9em; margin-bottom: 3px;">fakemink</div>
+                            <br>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="box centerbox pulse-text" style="margin-bottom: 10px; text-align: center;">
+                    <span style="color: #666;">status:</span>
+                    <h3 id="status" style="color: #7dd3c0; margin: 5px 0; font-family: 'NEC_APC3', monospace;">ONLINE</h3>
+                </div>
+
+                <div class="box rain-hitbox glow-box" id="linksdiv">
+                    <div style="margin-bottom: 15px;">
+                        <h3 style="color: #666; margin: 0;">nav</h3>
+                    </div>
+                    <div style="display: grid; gap: 2px; font-size: 0.9em;">
+                        <a class="navlink hover-shake" href="#" id="home-link" style="color: #777; text-decoration: none;">home</a>
+                        <a class="navlink hover-shake" href="#" id="about-link" style="color: #777; text-decoration: none;">about</a>
+                        <a class="navlink hover-shake" href="https://github.com/consent" style="color: #777; text-decoration: none;">projects</a>
+                        <hr style="border: 1px solid #333; margin: 8px 0;">
+                        <a class="navlink hover-shake" target="_blank" href="txt/discord.txt" style="color: #777; text-decoration: none;">discord</a>
+                        <a class="navlink hover-shake" target="_blank" href="#" style="color: #777; text-decoration: none;">soon</a>
+                        <a class="navlink hover-shake" target="_blank" href="txt/other socials.txt" style="color: #777; text-decoration: none;">other socials</a>
+                        <hr style="border: 1px solid #333; margin: 8px 0;">
+                    </div>
+                </div>
+
+                <div class="box glow-box" style="margin-top: 10px;">
+                    <h4 style="color: #666; margin: 0 0 10px 0;">tech stack:</h4>
+                    <div style="display: grid; gap: 5px; font-size: 0.8em;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #777;">py</span>
+                            <div style="width: 60px; height: 6px; background: #333; border-radius: 3px;">
+                                <div style="width: 85%; height: 100%; background: #7dd3c0; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #777;">js</span>
+                            <div style="width: 60px; height: 6px; background: #333; border-radius: 3px;">
+                                <div style="width: 75%; height: 100%; background: #7dd3c0; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #777;">html/css</span>
+                            <div style="width: 60px; height: 6px; background: #333; border-radius: 3px;">
+                                <div style="width: 80%; height: 100%; background: #7dd3c0; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #777;">c++</span>
+                            <div style="width: 60px; height: 6px; background: #333; border-radius: 3px;">
+                                <div style="width: 60%; height: 100%; background: #8db69c; border-radius: 3px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box pulse-text" style="margin-top: 10px;">
+                    <h4 style="color: #666; margin: 0 0 10px 0;">warsaw weather:</h4>
+                    <div id="weather-info" style="border-left: 2px solid #555; padding-left: 10px;">
+                        <div style="color: #777; font-size: 0.9em;">
+                            <div id="weather-temp" style="color: #7dd3c0;">loading...</div>
+                            <div id="weather-desc" style="color: #888; font-size: 0.8em;">fetching data</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box float-box" style="margin-top: 10px;">
+                    <h4 style="color: #666; margin: 0 0 10px 0;">world clocks:</h4>
+                    <div style="display: grid; gap: 3px; font-size: 0.8em;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #777;">warsaw</span>
+                            <span id="time-warsaw" style="color: #7dd3c0;">--:--</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #777;">tokyo</span>
+                            <span id="time-tokyo" style="color: #8db69c;">--:--</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #777;">new york</span>
+                            <span id="time-ny" style="color: #8db69c;">--:--</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: #777;">los angeles</span>
+                            <span id="time-la" style="color: #8db69c;">--:--</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div>
+                <div id="cursors"></div>
+                <div class="box rain-hitbox float-box" id="mainbox" style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 20px;">
+                    <div style="flex: 1;">
+                        <h2 class="pulse-text" style="display:inline; color: #666;">welcome</h2><br>
+                        <p style="color: #8db69c;">
+                            <span style="color: #7dd3c0;">18</span>, russia. i read <span style="color: #7dd3c0;">code</span> and listen to music, sometimes edit
+                        </p>
+                        <p style="color: #8db69c;">
+                            enjoy <span style="color: #7dd3c0;">osint</span>, investigating, and other things.
+                        </p>
+                        <div style="border-left: 2px solid #555; padding-left: 15px; margin: 20px 0;">
+                            <ul class="pulse-text" style="margin: 0; padding: 0; list-style: none; color: #8db69c;">
+                                <li><span style="color: #7dd3c0;">js,py,c++</span></li>
+                                <li>R&B, dark dream pop, hyperpop</li>
+                                <li>read a lot</li>
+                                <li>building <a href="https://epstein.fit" style="color: #7dd3c0;">epstein.fit</a></li>
+                                <li>hesitants a nigger</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="width: 120px; height: 120px; border: 2px dashed #555; display: flex; align-items: center; justify-content: center; color: #777; font-size: 0.8em; text-align: center; font-family: 'Pixel NES', monospace;">
+                        <img src="https://files.catbox.moe/080xbi.jpg" style="width: 120px; height: 120px; object-fit: cover; border: 2px solid #555;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div class="box glow-box">
+                        <div id="pre-tweet">
+                            <h4 style="color: #666; margin: 0 0 10px 0;">recent thoughts:</h4>
+                            <div id="tweet" style="border-left: 2px solid #555; padding-left: 10px;">
+                                <div style="color: #777; margin-bottom: 5px;">
+                                    <a style="text-decoration:none; color: #777;" target="_blank" href="#">
+                                        <span id="tweet-author">@rifle</span>
+                                        <span style="color:#555"> • </span>
+                                        <span id="tweet-date" style="color:#555;">3h</span>
+                                    </a>
+                                </div>
+                                <div id="tweet-text" class="typing-effect" style="color: #888; line-height: 1.3;">i wanna hittttt</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box pulse-text">
+                        <h3 style="color: #666; margin: 0 0 10px 0;">blog</h3>
+                        <div style="color: #888; font-style: italic;">
+                            empty for now.<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="box rain-hitbox float-box">
+                        <h3 style="color: #666; margin: 0 0 15px 0;">projects</h3>
+
+                        <div style="margin-bottom: 15px;">
+                            <div class="hover-shake" style="border-left: 2px solid #555; padding-left: 10px;">
+                                <h4 style="margin: 0; color: #777;"><a href="https://epstein.fit" >epstein.fit</a></h4>
+                                <p style="margin: 5px 0 0 0; color: #999; font-size: 0.9em;">this site</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <div class="hover-shake" style="border-left: 2px solid #333; padding-left: 10px;">
+                                <h4 style="margin: 0; color: #555;"><a href="https://epstein.fit">trace-wave</a></h4>
+                                <p style="margin: 5px 0 0 0; color: #777; font-size: 0.9em;">lookup tool coming out soon</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <div class="hover-shake" style="border-left: 2px solid #333; padding-left: 10px;">
+                                <h4 style="margin: 0; color: #555;"><a href="https://socks.rip/">socks.rip</a></h4>
+                                <p style="margin: 5px 0 0 0; color: #777; font-size: 0.9em;">another site w/ friend</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box terminal" style="display: flex; align-items: center; justify-content: center;">
+                        <div style="font-family: 'Pixel NES', monospace; font-size: 1em; line-height: 1.8; color: #777;">
+                            <div>[<span style="color: #555;">ok</span>] epstein.fit</div>
+                            <div>[<span style="color: #555;">ok</span>] lookups.us</div>
+                            <div>[<span style="color: #555;">ok</span>] socks.rip</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="marquee" style="margin-top: 15px;">
+                    <div class="marquee-text">
+                        | welcome to epstein.fit | @rival on roblox |
+                    </div>
+                </div>
+
+                <div class="box glow-box" style="margin-top: 15px;">
+                    <h4 style="color: #666; margin: 0 0 10px 0;">music player:</h4>
+                    <div style="border-left: 2px solid #555; padding-left: 10px; position: relative;">
+                        <div id="album-cover" style="position: absolute; top: 0; right: 0; width: 40px; height: 40px; background: #333; border: 1px solid #555; border-radius: 3px; overflow: hidden;">
+                            <img id="cover-image" src="" alt="album cover" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                            <div id="cover-placeholder" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #777; font-size: 0.6em;">♪</div>
+                        </div>
+
+                        <div id="current-track" style="color: #7dd3c0; font-size: 0.9em; margin-bottom: 3px; padding-right: 50px;">no track loaded</div>
+                        <div id="current-artist" style="color: #888; font-size: 0.8em; margin-bottom: 2px; padding-right: 50px;">-</div>
+                        <div id="current-album" style="color: #777; font-size: 0.7em; margin-bottom: 8px; padding-right: 50px;">-</div>
+
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <span id="current-time" style="color: #777; font-size: 0.7em; font-family: 'Pixel NES', monospace;">0:00</span>
+                            <div style="flex: 1; height: 4px; background: #333; border-radius: 2px; cursor: pointer;" id="progress-bar">
+                                <div id="progress" style="width: 0%; height: 100%; background: #7dd3c0; border-radius: 2px; transition: width 0.1s;"></div>
+                            </div>
+                            <span id="total-time" style="color: #777; font-size: 0.7em; font-family: 'Pixel NES', monospace;">0:00</span>
+                        </div>
+
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <button id="play-pause" style="background: #333; border: 1px solid #555; color: #777; padding: 4px 8px; font-size: 0.8em; cursor: pointer; font-family: 'Pixel NES', monospace;">▶</button>
+                            <button id="prev-track" style="background: #333; border: 1px solid #555; color: #777; padding: 4px 6px; font-size: 0.8em; cursor: pointer; font-family: 'Pixel NES', monospace;">⏮</button>
+                            <button id="next-track" style="background: #333; border: 1px solid #555; color: #777; padding: 4px 6px; font-size: 0.8em; cursor: pointer; font-family: 'Pixel NES', monospace;">⏭</button>
+                            <div style="flex: 1;"></div>
+                            <span id="volume-label" style="color: #777; font-size: 0.7em;">vol:</span>
+                            <input type="range" id="volume-slider" min="0" max="100" value="50" style="width: 60px; height: 4px; background: #333; outline: none; cursor: pointer;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <footer>
+            <div style="text-align: center; padding: 15px; color: #555; font-size: 0.8em;">
+                made with html, js, css<br>
+                <span id="copyright">(c) <span id="current-year">2025</span> otis</span>
+            </div>
+<script>
+    document.getElementById('current-year').innerHTML = new Date().getFullYear();
+
+    const navLinks = document.querySelectorAll('.navlink');
+    navLinks.forEach((link, index) => {
+        link.addEventListener('mouseenter', function() {
+            this.style.textShadow = `0 0 5px ${this.style.color}`;
+            this.style.transform = 'translateX(5px)';
+            this.style.transition = 'all 0.2s ease';
+        });
+        link.addEventListener('mouseleave', function() {
+            this.style.textShadow = 'none';
+            this.style.transform = 'translateX(0)';
+        });
+    });
+
+    function bootSequence() {
+        const statusEl = document.getElementById('status');
+        const bootMessages = [
+            'CONNECTING...',
+            'ONLINE'
+        ];
+
+        let index = 0;
+        const bootInterval = setInterval(() => {
+            statusEl.textContent = bootMessages[index];
+            index++;
+            if (index >= bootMessages.length) {
+                clearInterval(bootInterval);
+            }
+        }, 1000);
+    }
+
+    function addGlitchEffect(element) {
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = `translateX(${Math.random() * 4 - 2}px) translateY(${Math.random() * 4 - 2}px)`;
+            setTimeout(() => {
+                this.style.transform = 'translateX(0) translateY(0)';
+            }, 100);
+        });
+    }
+
+    async function updateWeather() {
+        try {
+            const response = await fetch('https://wttr.in/Warsaw?format=j1');
+            const data = await response.json();
+            const current = data.current_condition[0];
+            document.getElementById('weather-temp').textContent = `${current.temp_C}°C`;
+            document.getElementById('weather-desc').textContent = current.weatherDesc[0].value.toLowerCase();
+        } catch (error) {
+            document.getElementById('weather-temp').textContent = '15°C';
+            document.getElementById('weather-desc').textContent = 'cloudy';
+        }
+    }
+
+    function updateClocks() {
+        const now = new Date();
+
+        const warsaw = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Warsaw"}));
+        document.getElementById('time-warsaw').textContent = warsaw.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'});
+
+        const tokyo = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Tokyo"}));
+        document.getElementById('time-tokyo').textContent = tokyo.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'});
+
+        const ny = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+        document.getElementById('time-ny').textContent = ny.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'});
+
+        const la = new Date(now.toLocaleString("en-US", {timeZone: "America/Los_Angeles"}));
+        document.getElementById('time-la').textContent = la.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'});
+    }
+
+    function createRainEffect() {
+        const canvas = document.getElementById('rain-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const raindrops = [];
+        const numberOfDrops = 100;
+
+        for (let i = 0; i < numberOfDrops; i++) {
+            raindrops.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                length: Math.random() * 20 + 10,
+                speed: Math.random() * 3 + 2,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+
+        function animateRain() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            raindrops.forEach(drop => {
+                ctx.strokeStyle = `rgba(125, 211, 192, ${drop.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.lineCap = 'round';
+
+                ctx.beginPath();
+                ctx.moveTo(drop.x, drop.y);
+                ctx.lineTo(drop.x, drop.y + drop.length);
+                ctx.stroke();
+
+                drop.y += drop.speed;
+                drop.x += 0.5; 
+
+                if (drop.y > canvas.height) {
+                    drop.y = -drop.length;
+                    drop.x = Math.random() * canvas.width;
+                }
+            });
+
+            requestAnimationFrame(animateRain);
+        }
+
+        animateRain();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    }
+
+    let currentAudio = null;
+    let isPlaying = false;
+    let currentTrackIndex = 0;
+    let playlist = [];
+
+    async function loadMusicFiles() {
+        const musicFiles = [
+            {
+                src: "music/tightrope.mp3",
+                title: "Tightrope (Feat. Scott James)",
+                artist: "xxxtentacion",
+                album: "Tight-Rope (Single)",
+                cover: "music/covers/xxx.webp"
+            },
+            {
+                src: "music/close.mp3",
+                title: "close to me",
+                artist: "Ellie Goulding",
+                album: "Close to me (Single)",
+                cover: "music/covers/close to me.webp"
+            },
+            {
+                src: "music/close ur eyes.mp3",
+                title: "fright night",
+                artist: "decaying",
+                album: "fright night (Single)",
+                cover: "music/covers/fright.webp"
+            },
+            {
+                src: "music/i exist i exist i exist.mp3",
+                title: "i exist i exist i exist",
+                artist: "flatsound",
+                album: "I exist (Single)",
+                cover: "music/covers/i exist.jpg"
+            }
+        ];
+
+        for (let file of musicFiles) {
+            playlist.push({
+                title: file.title,
+                artist: file.artist,
+                album: file.album,
+                src: file.src,
+                cover: file.cover
+            });
+        }
+
+    }
+
+    function initMusicPlayer() {
+        const playPause = document.getElementById('play-pause');
+        const prevTrack = document.getElementById('prev-track');
+        const nextTrack = document.getElementById('next-track');
+        const volumeSlider = document.getElementById('volume-slider');
+        const progressBar = document.getElementById('progress-bar');
+
+        updateTrackDisplay();
+
+        playPause.addEventListener('click', function() {
+            const track = playlist[currentTrackIndex];
+
+            if (track.src && track.src !== "") {
+                if (!currentAudio || currentAudio.src !== track.src) {
+                    if (currentAudio) currentAudio.pause();
+                    currentAudio = new Audio(track.src);
+                    currentAudio.volume = volumeSlider.value / 100;
+
+                    currentAudio.addEventListener('timeupdate', updateProgress);
+                    currentAudio.addEventListener('ended', () => {
+                        document.getElementById('next-track').click();
+                    });
+                }
+
+                if (isPlaying) {
+                    currentAudio.pause();
+                    isPlaying = false;
+                    this.textContent = '▶';
+                    this.style.color = '#777';
+                } else {
+                    currentAudio.play();
+                    isPlaying = true;
+                    this.textContent = '⏸';
+                    this.style.color = '#7dd3c0';
+                }
+            } else {
+                isPlaying = !isPlaying;
+                this.textContent = isPlaying ? '⏸' : '▶';
+                this.style.color = isPlaying ? '#7dd3c0' : '#777';
+
+                if (isPlaying) {
+                    simulateProgress();
+                }
+            }
+        });
+
+        prevTrack.addEventListener('click', function() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            isPlaying = false;
+            document.getElementById('play-pause').textContent = '▶';
+            document.getElementById('play-pause').style.color = '#777';
+
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            updateTrackDisplay();
+        });
+
+        nextTrack.addEventListener('click', function() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            isPlaying = false;
+            document.getElementById('play-pause').textContent = '▶';
+            document.getElementById('play-pause').style.color = '#777';
+
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            updateTrackDisplay();
+        });
+
+        volumeSlider.addEventListener('input', function() {
+            if (currentAudio) {
+                currentAudio.volume = this.value / 100;
+            }
+        });
+
+        [playPause, prevTrack, nextTrack].forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.background = '#444';
+                this.style.borderColor = '#7dd3c0';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.background = '#333';
+                this.style.borderColor = '#555';
+            });
+        });
+    }
+
+    function updateTrackDisplay() {
+        const track = playlist[currentTrackIndex];
+        document.getElementById('current-track').textContent = track.title;
+        document.getElementById('current-artist').textContent = track.artist;
+        document.getElementById('current-album').textContent = track.album;
+        document.getElementById('progress').style.width = '0%';
+        document.getElementById('current-time').textContent = '0:00';
+        document.getElementById('total-time').textContent = '3:24';
+
+        const coverImage = document.getElementById('cover-image');
+        const coverPlaceholder = document.getElementById('cover-placeholder');
+
+        if (track.cover && track.cover !== "") {
+            coverImage.src = track.cover;
+            coverImage.style.display = 'block';
+            coverPlaceholder.style.display = 'none';
+
+            coverImage.onerror = function() {
+                coverImage.style.display = 'none';
+                coverPlaceholder.style.display = 'flex';
+            };
+        } else {
+            coverImage.style.display = 'none';
+            coverPlaceholder.style.display = 'flex';
+        }
+    }
+
+    function updateProgress() {
+        if (currentAudio) {
+            const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+
+            const currentMinutes = Math.floor(currentAudio.currentTime / 60);
+            const currentSeconds = Math.floor(currentAudio.currentTime % 60);
+            document.getElementById('current-time').textContent =
+                `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')}`;
+
+            const totalMinutes = Math.floor(currentAudio.duration / 60);
+            const totalSeconds = Math.floor(currentAudio.duration % 60);
+            document.getElementById('total-time').textContent =
+                `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+        }
+    }
+
+    function simulateProgress() {
+        if (!isPlaying) return;
+
+        let progress = 0;
+        const duration = 204; 
+
+        const interval = setInterval(() => {
+            if (!isPlaying) {
+                clearInterval(interval);
+                return;
+            }
+
+            progress += 1;
+            const percentage = (progress / duration) * 100;
+            document.getElementById('progress').style.width = percentage + '%';
+
+            const minutes = Math.floor(progress / 60);
+            const seconds = progress % 60;
+            document.getElementById('current-time').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            if (progress >= duration) {
+                clearInterval(interval);
+                document.getElementById('next-track').click();
+            }
+        }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        setTimeout(bootSequence, 1000);
+
+        document.querySelectorAll('.box').forEach(addGlitchEffect);
+
+        updateClocks();
+        setInterval(updateClocks, 1000);
+        updateWeather();
+        setInterval(updateWeather, 300000);
+
+        createRainEffect();
+
+        await loadMusicFiles();
+        initMusicPlayer();
+    });
+</script>
+
+<canvas id="rain-canvas"></canvas>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"4d111099c5d0420f93cca129d7fcfebf","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
